@@ -1,6 +1,6 @@
 {
   "name": "@waterial/typography",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./dist/waterial-typography.min.js",
   "license": "MIT",
   "type": "module",
