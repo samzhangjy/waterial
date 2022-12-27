@@ -1,6 +1,7 @@
 {
   "name": "@waterial/monorepo",
   "private": true,
+  "version": "0.0.2",
   "scripts": {
     "build:all": "pnpm run -r build",
     "version": "lerna version",
