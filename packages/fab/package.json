@@ -1,11 +1,11 @@
 {
   "name": "@waterial/fab",
   "version": "0.0.2",
-  "main": "./dist/waterial.min.js",
+  "main": "./dist/waterial-fab.min.js",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/fab.d.ts",
-  "module": "./dist/waterial.min.mjs",
+  "types": "./dist/waterial-fab.d.ts",
+  "module": "./dist/waterial-fab.min.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/samzhangjy/waterial/"

@@ -1,11 +1,11 @@
 {
   "name": "@waterial/base",
   "version": "0.0.2",
-  "main": "./dist/waterial.min.js",
+  "main": "./dist/waterial-base.min.js",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/waterial.d.ts",
-  "module": "./dist/waterial.min.mjs",
+  "types": "./dist/waterial-base.d.ts",
+  "module": "./dist/waterial-base.min.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/samzhangjy/waterial/"

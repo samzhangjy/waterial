@@ -1,11 +1,11 @@
 {
   "name": "@waterial/button",
   "version": "0.0.2",
-  "main": "./dist/waterial.min.js",
+  "main": "./dist/waterial-button.min.js",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/button.d.ts",
-  "module": "./dist/waterial.min.mjs",
+  "types": "./dist/waterial-button.d.ts",
+  "module": "./dist/waterial-button.min.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/samzhangjy/waterial/"

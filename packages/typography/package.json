@@ -1,11 +1,11 @@
 {
   "name": "@waterial/typography",
   "version": "0.0.2",
-  "main": "./dist/waterial.min.js",
+  "main": "./dist/waterial-typography.min.js",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/typography.d.ts",
-  "module": "./dist/waterial.min.mjs",
+  "types": "./dist/waterial-typography.d.ts",
+  "module": "./dist/waterial-typography.min.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/samzhangjy/waterial/"

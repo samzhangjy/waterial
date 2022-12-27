@@ -1,11 +1,11 @@
 {
   "name": "@waterial/ripple",
   "version": "0.0.2",
-  "main": "./dist/waterial.min.js",
+  "main": "./dist/waterial-ripple.min.js",
   "license": "MIT",
   "type": "module",
-  "types": "./dist/ripple.d.ts",
-  "module": "./dist/waterial.min.mjs",
+  "types": "./dist/waterial-ripple.d.ts",
+  "module": "./dist/waterial-ripple.min.mjs",
   "repository": {
     "type": "git",
     "url": "https://github.com/samzhangjy/waterial/"

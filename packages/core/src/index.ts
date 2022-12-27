@@ -11,3 +11,4 @@ export {
   TypographyProps,
 } from "@waterial/typography";
 export { default as ThemeProvider, ThemeProviderProps } from "./ThemeProvider";
+export { default as useWaterialTheme } from "./useWaterialTheme";

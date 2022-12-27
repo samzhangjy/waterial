@@ -88,7 +88,7 @@ type IRipple = {
  * Usage:
  *
  * ```tsx
- * const [props, ripples] = useRipple({ ...componentProps, color: "red" });
+ * const [props, ripples] = useRipple({ props: componentProps, color: "red" });
  * return (
  *   <Component {...props}>
  *     ...children...
@@ -101,20 +101,20 @@ type IRipple = {
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useRipple = <T extends { [key: string]: any }>({
-  onMouseDownCapture,
-  onMouseUp,
-  onMouseLeave,
-  onTouchStart,
-  onTouchEnd,
+  props,
   circleSize = 10,
   color,
-  ...rest
-}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-T & { circleSize?: number; color: string }): [{ [key: string]: any }, ReactNode[]] => {
+}: {
+  circleSize?: number;
+  color: string;
+  props: T;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+}): [{ [key: string]: any }, ReactNode[]] => {
   const [ripples, setRipples] = useState<IRipple[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const [isHolding, setIsHolding] = useState(false);
   const [pause, setPause] = useState(false);
+  const { onMouseDownCapture, onMouseUp, onMouseLeave, onTouchStart, onTouchEnd, ...rest } = props;
 
   useEffect(() => {
     if ("ontouchstart" in window || navigator.maxTouchPoints) {

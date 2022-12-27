@@ -273,7 +273,7 @@ export type ButtonProps = Partial<typeof ButtonContainer.defaultProps> & {
 const Button = ({ children, icon, variant, ...rest }: ButtonProps) => {
   const theme = useTheme() ?? lightTheme;
   const [props, ripples] = useRipple({
-    ...rest,
+    props: rest,
     color: containerRippleColor(theme)[variant ?? buttonContentDefaults.variant],
     circleSize: 10,
   });
@@ -286,7 +286,7 @@ const Button = ({ children, icon, variant, ...rest }: ButtonProps) => {
     >
       <ButtonIcon>{icon}</ButtonIcon>
       {icon && <ButtonIconGap size={8} />}
-      <Label size="large" inline>
+      <Label size="large" inline color="inherit">
         {children}
       </Label>
       {ripples}

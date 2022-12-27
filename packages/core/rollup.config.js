@@ -25,12 +25,12 @@ export default [
       {
         format: "cjs",
         sourcemap: true,
-        file: "./dist/waterial.min.js",
+        file: "./dist/waterial-core.min.js",
       },
       {
         format: "es",
         sourcemap: true,
-        file: "./dist/waterial.min.mjs",
+        file: "./dist/waterial-core.min.mjs",
       },
     ],
     plugins: [
@@ -47,7 +47,7 @@ export default [
   {
     input: "./dist/src/index.d.ts",
     output: {
-      file: "./dist/waterial.d.ts",
+      file: "./dist/waterial-core.d.ts",
       format: "es",
     },
     plugins: [dts()],

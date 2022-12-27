@@ -14,6 +14,7 @@ const Typography = styled.span<TypographyProps>`
   font-weight: ${(props) => props.theme.typography[props.role][props.size].weight};
   line-height: ${(props) => props.theme.typography[props.role][props.size].lineHeight};
   display: ${(props) => (props.inline ? "inline" : "block")};
+  color: ${(props) => (props.color ? props.color : props.theme.colors.onBackground)};
 `;
 
 Typography.defaultProps = {
