@@ -1,4 +1,6 @@
-import { addAlpha, interactionStates, lightTheme } from "@waterial/base";
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
+import { addAlpha, interactionStates } from "@waterial/base";
 import {
   MouseEvent,
   MouseEventHandler,
@@ -8,7 +10,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import styled, { keyframes } from "styled-components";
 
 const rippleEffect = (props: { size: number }) => keyframes`
   0% {
@@ -49,27 +50,30 @@ const Ripple = styled.div<{
   size: number;
   color: string;
   circleSize: number;
-}>`
-  position: absolute;
-  top: ${(props) => props.y}px;
-  left: ${(props) => props.x}px;
-  height: ${(props) => props.circleSize}px;
-  width: ${(props) => props.circleSize}px;
-  background: ${(props) => addAlpha(props.color, interactionStates.press)};
-  border-radius: 50%;
-  opacity: 0.3;
-  animation-name: ${(props) => rippleEffect({ size: props.size })};
-  animation-duration: 500ms;
-  animation-iteration-count: 1;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-  pointer-events: none;
-  animation-play-state: ${(props) => (props.isHolding ? "paused" : "")};
-  transition: all 0.2s;
-`;
+}>(
+  {
+    position: "absolute",
+    borderRadius: "50%",
+    opacity: 0.3,
+    animationDuration: "500ms",
+    animationIterationCount: 1,
+    animationTimingFunction: "ease",
+    animationFillMode: "forwards",
+    pointerEvents: "none",
+    transition: "all 0.2s",
+  },
+  (props) => ({
+    top: props.y,
+    left: props.x,
+    height: props.circleSize,
+    width: props.circleSize,
+    background: addAlpha(props.color, interactionStates.press),
+    animationName: rippleEffect({ size: props.size }),
+    animationPlayState: props.isHolding ? "paused" : "",
+  })
+);
 
 Ripple.defaultProps = {
-  theme: lightTheme,
   circleSize: 10,
 };
 

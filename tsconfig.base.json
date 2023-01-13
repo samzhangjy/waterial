@@ -17,7 +17,8 @@
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "jsx": "react",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true
   },
   "exclude": ["node_modules", "dist", "*.d.ts"]
 }

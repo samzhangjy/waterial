@@ -1,5 +1,5 @@
 import { lightTheme } from "@waterial/base";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { TypographyRole, TypographySize } from "./index";
 
 export type TypographyProps = {
@@ -8,17 +8,16 @@ export type TypographyProps = {
   inline?: boolean;
 };
 
-const Typography = styled.span<TypographyProps>`
-  font-family: ${(props) => props.theme.typography[props.role][props.size].family};
-  font-size: ${(props) => props.theme.typography[props.role][props.size].size};
-  font-weight: ${(props) => props.theme.typography[props.role][props.size].weight};
-  line-height: ${(props) => props.theme.typography[props.role][props.size].lineHeight};
-  display: ${(props) => (props.inline ? "inline" : "block")};
-  color: ${(props) => (props.color ? props.color : props.theme.colors.onBackground)};
-`;
+const Typography = styled.span<TypographyProps>({}, ({ theme = lightTheme, ...props }) => ({
+  fontFamily: theme.typography[props.role][props.size].family,
+  fontSize: theme.typography[props.role][props.size].size,
+  fontWeight: theme.typography[props.role][props.size].weight,
+  lineHeight: theme.typography[props.role][props.size].lineHeight,
+  display: props.inline ? "inline" : "block",
+  color: props.color ? props.color : theme.colors.onBackground,
+}));
 
 Typography.defaultProps = {
-  theme: lightTheme,
   inline: false,
   size: "medium",
 };

@@ -2,7 +2,8 @@ import { addAlpha, blend, interactionStates, lightTheme, WaterialTheme } from "@
 import useRipple from "@waterial/ripple";
 import { Label } from "@waterial/typography";
 import { ReactNode } from "react";
-import styled, { useTheme } from "styled-components";
+import styled from "@emotion/styled";
+import { useTheme } from "@emotion/react";
 
 type ButtonContentProps = {
   withIcon: boolean;
@@ -173,78 +174,84 @@ const containerRippleColor = (theme: WaterialTheme): ButtonStyles => ({
   text: theme.colors.primary,
 });
 
-const ButtonContainer = styled.button<ButtonContentProps>`
-  height: 40px;
-  border-radius: 20px;
-  background: ${(props) => enabledContainerBackground(props.theme)[props.variant]};
-  box-shadow: ${(props) => enabledContainerElevation(props.theme)[props.variant]};
-  overflow: hidden;
-  position: relative;
-  transition: all 200ms;
-  outline: none;
-  border-width: 0px;
-  border-style: solid;
-  color: ${(props) => enabledContainerTextColor(props.theme)[props.variant]};
-  border-color: rgba(0, 0, 0, 0);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: ${(props) => (props.variant === "text" ? (props.withIcon ? 16 : 12) : 24)}px;
-  padding-left: ${(props) => (props.variant === "text" ? 12 : props.withIcon ? 16 : 24)}px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border: ${(props) =>
-    props.variant === "outlined"
-      ? "1px solid " + outlinedContainerOutlineColor(props.theme).enabled
-      : "none"};
-  min-width: ${(props) => (props.variant === "text" ? "48px" : "auto")};
+const ButtonContainer = styled.button<ButtonContentProps>(
+  {
+    height: "40px",
+    borderRadius: "20px",
+    overflow: "hidden",
+    position: "relative",
+    transition: "all 200ms",
+    outline: "none",
+    borderWidth: "0px",
+    borderStyle: "solid",
+    borderColor: "rgba(0, 0, 0, 0)",
+    paddingTop: "10px",
+    paddingBottom: "10px",
+    boxSizing: "border-box",
+    "-moz-box-sizing": "border-box",
+    "-webkit-box-sizing": "border-box",
 
-  /* IMPORTANT: use :enabled selector to aviod showing interation states when disabled */
-  &:hover:enabled {
-    background-color: ${(props) => hoveredContainerBackground(props.theme)[props.variant]};
-    box-shadow: ${(props) => hoveredContainerElevation(props.theme)[props.variant]};
-    color: ${(props) => hoveredContainerTextColor(props.theme)[props.variant]};
-    border: ${(props) =>
+    /* IMPORTANT: use :enabled selector to aviod showing interation states when disabled */
+    "&:hover:enabled": {
+      cursor: "pointer",
+    },
+
+    "&:disabled:hover": {
+      cursor: "not-allowed",
+    },
+  },
+  ({ theme = lightTheme, ...props }) => ({
+    background: enabledContainerBackground(theme)[props.variant],
+    boxShadow: enabledContainerElevation(theme)[props.variant],
+    color: enabledContainerTextColor(theme)[props.variant],
+    paddingRight: props.variant === "text" ? (props.withIcon ? 16 : 12) : 24,
+    paddingLeft: props.variant === "text" ? 12 : props.withIcon ? 16 : 24,
+    border:
       props.variant === "outlined"
-        ? "1px solid " + outlinedContainerOutlineColor(props.theme).hovered
-        : "none"};
-    cursor: pointer;
-  }
+        ? "1px solid " + outlinedContainerOutlineColor(theme).enabled
+        : "none",
+    minWidth: props.variant === "text" ? "48px" : "auto",
 
-  &:active:enabled {
-    background-color: ${(props) => pressedContainerBackground(props.theme)[props.variant]};
-    box-shadow: ${(props) => pressedContainerElevation(props.theme)[props.variant]} !important;
-    color: ${(props) => pressedContainerTextColor(props.theme)[props.variant]};
-    border: ${(props) =>
-      props.variant === "outlined"
-        ? "1px solid " + outlinedContainerOutlineColor(props.theme).pressed
-        : "none"};
-  }
+    "&:hover:enabled": {
+      backgroundColor: hoveredContainerBackground(theme)[props.variant],
+      boxShadow: hoveredContainerElevation(theme)[props.variant],
+      color: hoveredContainerTextColor(theme)[props.variant],
+      border:
+        props.variant === "outlined"
+          ? "1px solid " + outlinedContainerOutlineColor(theme).hovered
+          : "none",
+    },
 
-  /* NOTE: Only show focused styles to keyboard users */
-  &:focus-visible:enabled {
-    background-color: ${(props) => focusedContainerBackground(props.theme)[props.variant]};
-    box-shadow: ${(props) => focusedContainerElevation(props.theme)[props.variant]} !important;
-    color: ${(props) => focusedContainerTextColor(props.theme)[props.variant]};
-    border: ${(props) =>
-      props.variant === "outlined"
-        ? "1px solid " + outlinedContainerOutlineColor(props.theme).focused
-        : "none"};
-  }
+    "&:active:enabled": {
+      backgroundColor: pressedContainerBackground(theme)[props.variant],
+      boxShadow: `${pressedContainerElevation(theme)[props.variant]} !important`,
+      color: pressedContainerTextColor(theme)[props.variant],
+      border:
+        props.variant === "outlined"
+          ? "1px solid " + outlinedContainerOutlineColor(theme).pressed
+          : "none",
+    },
 
-  &:disabled {
-    background-color: ${(props) => disabledContainerBackground(props.theme)[props.variant]};
-    color: ${(props) => disabledContainerTextColor(props.theme)[props.variant]};
-    box-shadow: ${(props) => disabledContainerElevation(props.theme)[props.variant]};
-  }
+    /* NOTE: Only show focused styles to keyboard users */
+    "&:focus-visible:enabled": {
+      backgroundColor: focusedContainerBackground(theme)[props.variant],
+      boxShadow: `${focusedContainerElevation(theme)[props.variant]} !important`,
+      color: focusedContainerTextColor(theme)[props.variant],
+      border:
+        props.variant === "outlined"
+          ? "1px solid " + outlinedContainerOutlineColor(theme).focused
+          : "none",
+    },
 
-  &:disabled:hover {
-    cursor: not-allowed;
-  }
-`;
+    "&:disabled": {
+      backgroundColor: disabledContainerBackground(theme)[props.variant],
+      color: disabledContainerTextColor(theme)[props.variant],
+      boxShadow: disabledContainerElevation(theme)[props.variant],
+    },
+  })
+);
 
 const buttonContentDefaults = {
-  theme: lightTheme,
   variant: "elevated",
 } as const;
 
@@ -271,7 +278,8 @@ export type ButtonProps = Partial<typeof ButtonContainer.defaultProps> & {
  * This component is designed upon [Material Design 3 - Common Buttons](https://m3.material.io/components/buttons/overview).
  */
 const Button = ({ children, icon, variant, ...rest }: ButtonProps) => {
-  const theme = useTheme() ?? lightTheme;
+  let theme = useTheme();
+  if (!theme.colors) theme = lightTheme;
   const [props, ripples] = useRipple({
     props: rest,
     color: containerRippleColor(theme)[variant ?? buttonContentDefaults.variant],

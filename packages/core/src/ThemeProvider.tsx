@@ -1,15 +1,14 @@
 import { darkTheme, lightTheme, WaterialTheme } from "@waterial/base";
 import {
-  DefaultTheme,
   ThemeProvider as BaseProvider,
   ThemeProviderProps as BaseProviderProps,
-} from "styled-components";
+} from "@emotion/react";
 import GlobalStyles from "./GlobalStyles";
 
 export type ThemeProviderProps = {
   theme?: "light" | "dark" | WaterialTheme;
   withGlobalStyles?: boolean;
-} & Omit<BaseProviderProps<DefaultTheme>, "theme">;
+} & Omit<BaseProviderProps, "theme">;
 
 const ThemeProvider = ({ theme, withGlobalStyles, children, ...rest }: ThemeProviderProps) => {
   const themeObject =

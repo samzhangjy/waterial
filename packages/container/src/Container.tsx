@@ -1,5 +1,5 @@
 import { lightTheme, Breakpoints } from "@waterial/base";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type OtherString = string & {};
@@ -9,19 +9,18 @@ export type ContainerProps = {
   padding?: string;
 };
 
-const Container = styled.div<ContainerProps>`
-  max-width: ${(props) =>
+const Container = styled.div<ContainerProps>(({ theme = lightTheme, ...props }) => ({
+  maxWidth:
     typeof props.maxWidth === "undefined"
-      ? props.theme.breakpoints.md
-      : props.maxWidth in props.theme.breakpoints
-      ? props.theme.breakpoints[props.maxWidth as keyof Breakpoints]
-      : props.maxWidth};
-  margin: 0 auto;
-  padding: ${(props) => (props.padding ? "0px " + props.padding : "none")};
-`;
+      ? theme.breakpoints.md
+      : props.maxWidth in theme.breakpoints
+      ? theme.breakpoints[props.maxWidth as keyof Breakpoints]
+      : props.maxWidth,
+  margin: "0 auto",
+  padding: props.padding ? "0px " + props.padding : "none",
+}));
 
 Container.defaultProps = {
-  theme: lightTheme,
   maxWidth: "md",
   padding: "20px",
 };

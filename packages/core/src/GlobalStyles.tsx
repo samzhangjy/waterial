@@ -1,13 +1,21 @@
-import { lightTheme } from "@waterial/base";
-import { createGlobalStyle } from "styled-components";
+import { Global } from "@emotion/react";
+import { lightTheme, WaterialTheme } from "@waterial/base";
 
-const GlobalStyles = createGlobalStyle`
-  body {
-    background-color: ${(props) => props.theme.colors.background};
-    padding: 0px;
-    margin: 0px;
-  }
-`;
+export type GlobalStylesProps = {
+  theme: WaterialTheme;
+};
+
+const GlobalStyles = (props: GlobalStylesProps) => (
+  <Global
+    styles={{
+      body: {
+        backgroundColor: props.theme.colors.background,
+        padding: 0,
+        margin: 0,
+      },
+    }}
+  />
+);
 
 GlobalStyles.defaultProps = {
   theme: lightTheme,
